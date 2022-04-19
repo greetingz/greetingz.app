@@ -66,7 +66,7 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
-        <Typography variant="h1" component="h1" gutterBottom>
+        <Typography variant="h1" component="h1" gutterBottom fontWeight={'bold'}>
           Gift an NFT Card
         </Typography>
 

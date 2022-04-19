@@ -9,6 +9,8 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
+import Paper from "@mui/material/Paper";
+import InputBase from "@mui/material/InputBase";
 
 const mode = "dev";
 const contracts = {
@@ -103,8 +105,18 @@ function MintNFT({ currentImg }) {
   return (
     <>
       <Box sx={{ minWidth: 500 }}>
-        <form className="row" onSubmit={(e) => e.preventDefault()}>
-          <FormControl fullWidth>
+        <Paper
+          component="form"
+          sx={{
+            p: "2px 4px",
+            display: "flex",
+            alignItems: "center",
+            width: 500,
+          }}
+        >
+          <FormControl
+            sx={{ flex: 1 }}
+          >
             <InputLabel id="network-select-label">Network</InputLabel>
             <Select
               labelId="network-select-label"
@@ -114,9 +126,7 @@ function MintNFT({ currentImg }) {
               onChange={handleNetworkChange}
             >
               <MenuItem value="">Network</MenuItem>
-              <MenuItem value="polygon">
-                Polygon
-              </MenuItem>
+              <MenuItem value="polygon">Polygon</MenuItem>
               <MenuItem value="cardano" disabled>
                 Cardano (coming soon)
               </MenuItem>
@@ -126,18 +136,17 @@ function MintNFT({ currentImg }) {
             </Select>
           </FormControl>
 
-          <input
-            type="text"
+          <InputBase
+            sx={{ ml: 1, flex: 2 }}
             value={address}
             onInput={handleSetInputAddress}
             placeholder="Receiver Address"
-            className="input"
           />
           <Button onClick={handleButtonClick}>
             <ion-icon name="planet"></ion-icon>
             Gift Card Now
           </Button>
-        </form>
+        </Paper>
       </Box>
 
       <Modal
