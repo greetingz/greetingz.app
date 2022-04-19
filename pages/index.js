@@ -1,6 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Head from "next/head";
-import Image from "next/image";
 import styles from "../styles/Home.module.css";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
@@ -8,15 +7,41 @@ import Box from "@mui/material/Box";
 import Gallery from "../components/Gallery";
 import Filter from "../components/Filter";
 import Canvas from "../components/Canvas";
+import ConnectWallet from "../components/ConnectWallet";
+import MintNFT from "../components/MintNFT";
 import images from "../assets/images";
 
 const FILTERS = ["birthday", "ramadan"];
 export default function Home() {
   const [activeFilters, setActiveFilters] = useState(FILTERS);
   const [currentImg, setCurrentImg] = useState(images[0]);
+  const [currentAccount, setCurrentAccount] = useState("");
 
+  const checkIfWalletIsConnected = async () => {
+    const { ethereum } = window;
+
+    if (!ethereum) {
+      alert("Make sure you have metamask!");
+      return;
+    }
+
+    // Check if we're authorized to access the user's wallet
+    const accounts = await ethereum.request({ method: "eth_accounts" });
+
+    // User can have multiple authorized accounts, we grab the first one if its there!
+    if (accounts.length) {
+      setCurrentAccount(accounts[0]);
+    }
+  };
+
+  useEffect(() => {
+    checkIfWalletIsConnected();
+  }, []);
+  
   const getFilteredImages = () =>
-    images.filter((img) => activeFilters.some((filter) => img.tags.includes(filter)));
+    images.filter((img) =>
+      activeFilters.some((filter) => img.tags.includes(filter))
+    );
 
   const handleFilterClick = (filter) => {
     if (!activeFilters.includes(filter)) {
@@ -30,7 +55,7 @@ export default function Home() {
   };
 
   return (
-    <div className={styles.container}>
+    <>
       <Head>
         <title>Gif An NFT</title>
         <meta
@@ -47,32 +72,36 @@ export default function Home() {
 
         <p className={styles.description}>celebrate in a futuristic way</p>
 
-        <Box mb={10} mt={10}>
+        <Box my={5}>
           <Canvas image={currentImg} />
         </Box>
-        
-        <Gallery images={getFilteredImages()} key="gallery" onClick={handleImgClick}/>
-        <Box mb={10} mt={10}>
+
+        <Gallery
+          images={getFilteredImages()}
+          key="gallery"
+          onClick={handleImgClick}
+        />
+
+        <Box my={5}>
           <Filter
             filters={FILTERS}
             activeFilters={activeFilters}
             onClick={handleFilterClick}
           />
         </Box>
+
+
+        <Box my={5}>
+        {currentAccount === "" ? (
+            <ConnectWallet setCurrentAccount={setCurrentAccount} />
+          ) : (
+            <MintNFT  currentImg={currentImg} />
+          )}
+        </Box>
       </main>
 
       <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{" "}
-          <span className={styles.logo}>
-            <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-          </span>
-        </a>
       </footer>
-    </div>
+    </>
   );
 }
