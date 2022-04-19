@@ -7,20 +7,26 @@ import Box from "@mui/material/Box";
 
 import Gallery from "../components/Gallery";
 import Filter from "../components/Filter";
+import Canvas from "../components/Canvas";
 import images from "../assets/images";
 
 const FILTERS = ["birthday", "ramadan"];
 export default function Home() {
   const [activeFilters, setActiveFilters] = useState(FILTERS);
+  const [currentImg, setCurrentImg] = useState(images[0]);
 
   const getFilteredImages = () =>
-    images.filter((img) => activeFilters.includes(img.tags[0]));
+    images.filter((img) => activeFilters.some((filter) => img.tags.includes(filter)));
 
   const handleFilterClick = (filter) => {
     if (!activeFilters.includes(filter)) {
       return setActiveFilters([...activeFilters, filter]);
     }
     setActiveFilters(activeFilters.filter((x) => x !== filter));
+  };
+
+  const handleImgClick = (img) => {
+    setCurrentImg(img);
   };
 
   return (
@@ -42,13 +48,17 @@ export default function Home() {
         <p className={styles.description}>celebrate in a futuristic way</p>
 
         <Box mb={10} mt={10}>
+          <Canvas image={currentImg} />
+        </Box>
+        
+        <Gallery images={getFilteredImages()} key="gallery" onClick={handleImgClick}/>
+        <Box mb={10} mt={10}>
           <Filter
             filters={FILTERS}
             activeFilters={activeFilters}
             onClick={handleFilterClick}
           />
         </Box>
-        <Gallery images={getFilteredImages()} key="gallery" />
       </main>
 
       <footer className={styles.footer}>

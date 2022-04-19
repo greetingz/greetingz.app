@@ -1,12 +1,18 @@
 import Grid from "@mui/material/Grid";
 
-const Gallery = (props) => {
-  const itemData = props.images;
+const Gallery = ({ images, onClick }) => {
   return (
     <Grid container spacing={3} justifyContent="center" alignItems="center">
-      {itemData.map((item) => (
-        <Grid item key={item.name} xs={2}>
-          <img src={item.url} alt={item.name} loading="lazy" />
+      {images.map((img) => (
+        <Grid item key={img.name} xs={2}>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={img.url}
+            alt={img.name}
+            loading="lazy"
+            onClick={() => onClick(img)}
+            style={{ cursor: "pointer" }}
+          />
         </Grid>
       ))}
     </Grid>
