@@ -12,7 +12,7 @@ import Select from "@mui/material/Select";
 import Paper from "@mui/material/Paper";
 import InputBase from "@mui/material/InputBase";
 
-const mode = "dev";
+const mode = "production";
 const contracts = {
   production: "0x0f4aCe25b692d452dd5D089BeF4FD6f579370648",
   dev: "0x43669CDC544a73482639e6aA950b11BcF621d049",
@@ -163,7 +163,7 @@ function MintNFT({ currentImg }) {
       >
         <Box sx={style}>
           <p>
-            Hey there! We've minted your NFT. It may be blank right now. It can
+            Hey there! We have minted your NFT. It may be blank right now. It can
             take a max of 10 min to show up on OpenSea.
           </p>
           <div className="modal-row">
