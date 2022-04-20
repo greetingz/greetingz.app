@@ -2,6 +2,7 @@ import * as React from "react";
 import Document, { Html, Head, Main, NextScript } from "next/document";
 import createEmotionServer from "@emotion/server/create-instance";
 import createEmotionCache from "../utility/createEmotionCache";
+import Beta from "../components/Beta";
 
 export default class MyDocument extends Document {
   render() {
@@ -14,6 +15,7 @@ export default class MyDocument extends Document {
           />
         </Head>
         <body>
+          <Beta />
           <Main />
           <NextScript />
         </body>
