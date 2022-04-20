@@ -8,7 +8,7 @@ const darkTheme = createTheme({
     MuiButton: {
       styleOverrides: {
         root: {
-          color: "#a777e3",
+          color: "#fff",
         },
         contained: {
           background: "linear-gradient(45deg, #a777e3 30%, #6e8efb 90%)",

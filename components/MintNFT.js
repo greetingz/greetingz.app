@@ -18,7 +18,7 @@ import ImageSearchIcon from "@mui/icons-material/ImageSearch";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import RocketLaunchIcon from "@mui/icons-material/RocketLaunch";
 
-const mode = "dev";
+const mode = "production";
 const contracts = {
   production: "0x0f4aCe25b692d452dd5D089BeF4FD6f579370648",
   dev: "0x43669CDC544a73482639e6aA950b11BcF621d049",
@@ -42,7 +42,7 @@ const WEBSITE = "nft.9k.ninja";
 function MintNFT({ currentImg }) {
   const [address, setAddress] = useState("");
   const [loadingMessage, setLoadingMessage] = useState("minting...");
-  const [loadingStatus, setLoadingStatus] = useState(true);
+  const [loadingStatus, setLoadingStatus] = useState(false);
   const [infoModalStatus, setInfoModalStatus] = useState(false);
   const [network, setNetwork] = useState("");
 

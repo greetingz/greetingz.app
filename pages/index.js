@@ -9,6 +9,7 @@ import Filter from "../components/Filter";
 import Canvas from "../components/Canvas";
 import ConnectWallet from "../components/ConnectWallet";
 import MintNFT from "../components/MintNFT";
+import Footer from "../components/Footer";
 import images from "../assets/images";
 
 const FILTERS = ["birthday", "ramadan"];
@@ -105,9 +106,9 @@ export default function Home() {
             <MintNFT currentImg={currentImg} />
           )}
         </Box>
-      </main>
 
-      <footer className={styles.footer}></footer>
+      </main>
+      <Footer />
     </>
   );
 }

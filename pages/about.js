@@ -1,59 +1,20 @@
-import { useState, useEffect } from "react";
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
 import Typography from "@mui/material/Typography";
-import Box from "@mui/material/Box";
+import Grid from "@mui/material/Grid";
+import Card from "@mui/material/Card";
+import CardMedia from "@mui/material/CardMedia";
+import CardActions from "@mui/material/CardActions";
+import CardContent from "@mui/material/CardContent";
+import IconButton from "@mui/material/IconButton";
 
-import Gallery from "../components/Gallery";
-import Filter from "../components/Filter";
-import Canvas from "../components/Canvas";
-import ConnectWallet from "../components/ConnectWallet";
-import MintNFT from "../components/MintNFT";
-import images from "../assets/images";
+import GitHubIcon from "@mui/icons-material/GitHub";
+import LinkedInIcon from "@mui/icons-material/LinkedIn";
+import TwitterIcon from "@mui/icons-material/Twitter";
 
-const FILTERS = ["birthday", "ramadan"];
-export default function Home() {
-  const [activeFilters, setActiveFilters] = useState(FILTERS);
-  const [currentImg, setCurrentImg] = useState(images[0]);
-  const [currentAccount, setCurrentAccount] = useState("");
+import Footer from "../components/Footer";
 
-  const checkIfWalletIsConnected = async () => {
-    const { ethereum } = window;
-
-    if (!ethereum) {
-      alert("Make sure you have metamask!");
-      return;
-    }
-
-    // Check if we're authorized to access the user's wallet
-    const accounts = await ethereum.request({ method: "eth_accounts" });
-
-    // User can have multiple authorized accounts, we grab the first one if its there!
-    if (accounts.length) {
-      setCurrentAccount(accounts[0]);
-    }
-  };
-
-  useEffect(() => {
-    checkIfWalletIsConnected();
-  }, []);
-
-  const getFilteredImages = () =>
-    images.filter((img) =>
-      activeFilters.some((filter) => img.tags.includes(filter))
-    );
-
-  const handleFilterClick = (filter) => {
-    if (!activeFilters.includes(filter)) {
-      return setActiveFilters([...activeFilters, filter]);
-    }
-    setActiveFilters(activeFilters.filter((x) => x !== filter));
-  };
-
-  const handleImgClick = (img) => {
-    setCurrentImg(img);
-  };
-
+export default function About() {
   return (
     <>
       <Head>
@@ -76,37 +37,96 @@ export default function Home() {
           Behind The Project
         </Typography>
 
+        <Grid container spacing={3} justifyContent="center" alignItems="center">
+          <Grid item xs={4}>
+            <Card sx={{ maxWidth: 345 }}>
+              <CardMedia
+                component="img"
+                height="300"
+                image="/images/avatars/m.behairy.jpg"
+                alt="Mohamed Behairy"
+              />
+              <CardContent>
+                <Typography gutterBottom variant="h5" component="div">
+                  Mohamed Behairy
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod
+                  sit cum, quas consequuntur deleniti.
+                </Typography>
+              </CardContent>
+              <CardActions>
+                <IconButton
+                  color="primary"
+                  href="https://github.com/MoShaaban"
+                  target="_blank"
+                >
+                  <GitHubIcon />
+                </IconButton>
+                <IconButton
+                  color="primary"
+                  href="https://github.com/MoShaaban"
+                  target="_blank"
+                >
+                  <LinkedInIcon />
+                </IconButton>
+                <IconButton
+                  color="primary"
+                  href="https://github.com/MoShaaban"
+                  target="_blank"
+                >
+                  <TwitterIcon />
+                </IconButton>
+              </CardActions>
+            </Card>
+          </Grid>
 
-        <Box my={3}>
-          <Canvas image={currentImg} />
-        </Box>
-
-        <Box my={3} width="100%">
-          <Gallery
-            images={getFilteredImages()}
-            key="gallery"
-            onClick={handleImgClick}
-          />
-        </Box>
-
-        <Box my={3}>
-          <Filter
-            filters={FILTERS}
-            activeFilters={activeFilters}
-            onClick={handleFilterClick}
-          />
-        </Box>
-
-        <Box my={3}>
-          {currentAccount === "" ? (
-            <ConnectWallet setCurrentAccount={setCurrentAccount} />
-          ) : (
-            <MintNFT currentImg={currentImg} />
-          )}
-        </Box>
+          <Grid item xs={4}>
+            <Card sx={{ maxWidth: 345 }}>
+              <CardMedia
+                component="img"
+                height="300"
+                image="/images/avatars/a.ismail.png"
+                alt="Abdelrahman Ismail"
+              />
+              <CardContent>
+                <Typography gutterBottom variant="h5" component="div">
+                  Abdelrahman Ismail
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod
+                  sit cum, quas consequuntur deleniti.
+                </Typography>
+              </CardContent>
+              <CardActions>
+                <IconButton
+                  color="primary"
+                  href="https://github.com/ismail9k"
+                  target="_blank"
+                >
+                  <GitHubIcon />
+                </IconButton>
+                <IconButton
+                  color="primary"
+                  href="https://www.linkedin.com/in/ismail9k/"
+                  target="_blank"
+                >
+                  <LinkedInIcon />
+                </IconButton>
+                <IconButton
+                  color="primary"
+                  href="https://twitter.com/ismail_9k"
+                  target="_blank"
+                >
+                  <TwitterIcon />
+                </IconButton>
+              </CardActions>
+            </Card>
+          </Grid>
+        </Grid>
       </main>
 
-      <footer className={styles.footer}></footer>
+      <Footer />
     </>
   );
 }
