@@ -3,6 +3,8 @@ import { useState } from "react";
 
 import giftNFT from "../assets/contracts/GiftNFT.json";
 import Modal from "@mui/material/Modal";
+import Backdrop from "@mui/material/Backdrop";
+import CircularProgress from "@mui/material/CircularProgress";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import InputLabel from "@mui/material/InputLabel";
@@ -16,7 +18,7 @@ import ImageSearchIcon from "@mui/icons-material/ImageSearch";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import RocketLaunchIcon from "@mui/icons-material/RocketLaunch";
 
-const mode = "production";
+const mode = "dev";
 const contracts = {
   production: "0x0f4aCe25b692d452dd5D089BeF4FD6f579370648",
   dev: "0x43669CDC544a73482639e6aA950b11BcF621d049",
@@ -39,8 +41,8 @@ const WEBSITE = "nft.9k.ninja";
 
 function MintNFT({ currentImg }) {
   const [address, setAddress] = useState("");
-  const [loadingMessage, setLoadingMessage] = useState('');
-  const [loadingModalStatus, setLoadingModalStatus] = useState(false);
+  const [loadingMessage, setLoadingMessage] = useState("minting...");
+  const [loadingStatus, setLoadingStatus] = useState(true);
   const [infoModalStatus, setInfoModalStatus] = useState(false);
   const [network, setNetwork] = useState("");
 
@@ -63,14 +65,16 @@ function MintNFT({ currentImg }) {
         let nftTxn = await connectedContract.makeGiftNFT(address, url, title);
 
         setLoadingMessage("Mining... please wait.");
-        setLoadingModalStatus(true);
+        setLoadingStatus(true);
         await nftTxn.wait();
-        
-        setLoadingMessage("Mining finished successfully. Please hold on while generating the NFT info");
-        setLoadingModalStatus(true);
+
+        setLoadingMessage(
+          "Mining finished successfully. Please hold on while generating the NFT info"
+        );
+        setLoadingStatus(true);
 
         connectedContract.on("NewGiftNFTMinted", (from, tokenId) => {
-          setLoadingModalStatus(false);
+          setLoadingStatus(false);
           setTokenId(tokenId.toNumber());
           setInfoModalStatus(true);
         });
@@ -82,7 +86,7 @@ function MintNFT({ currentImg }) {
         console.log("Ethereum object doesn't exist!");
       }
     } catch (error) {
-      setLoadingModalStatus(false);
+      setLoadingStatus(false);
       console.log(error);
     }
   }
@@ -151,13 +155,16 @@ function MintNFT({ currentImg }) {
         </Paper>
       </Box>
 
-      <Modal
-        id="loadingModal"
-        open={loadingModalStatus}
-        onClose={() => setLoadingModalStatus(false)}
+      <Backdrop
+        id="loadingBackdrop"
+        open={loadingStatus}
+        onClose={() => setLoadingStatus(false)}
       >
-        <Box sx={style}>{loadingMessage}</Box>
-      </Modal>
+        <Stack spacing={2} alignItems="center">
+          <CircularProgress color="inherit" />
+          <p>{loadingMessage}</p>
+        </Stack>
+      </Backdrop>
       <Modal
         id="infoModal"
         open={infoModalStatus}
