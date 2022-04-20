@@ -37,7 +37,7 @@ export default function Home() {
   useEffect(() => {
     checkIfWalletIsConnected();
   }, []);
-  
+
   const getFilteredImages = () =>
     images.filter((img) =>
       activeFilters.some((filter) => img.tags.includes(filter))
@@ -66,23 +66,31 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
-        <Typography variant="h1" component="h1" gutterBottom fontWeight={'bold'}>
-          Gift an NFT Card
+        <Typography
+          className={styles.highlight}
+          variant="h1"
+          component="h1"
+          gutterBottom
+          fontWeight={"bold"}
+        >
+          Gift an <span>NFT</span> Card
         </Typography>
 
         <p className={styles.description}>celebrate in a futuristic way</p>
 
-        <Box my={5}>
+        <Box my={3}>
           <Canvas image={currentImg} />
         </Box>
 
-        <Gallery
-          images={getFilteredImages()}
-          key="gallery"
-          onClick={handleImgClick}
-        />
+        <Box my={3} width="100%">
+          <Gallery
+            images={getFilteredImages()}
+            key="gallery"
+            onClick={handleImgClick}
+          />
+        </Box>
 
-        <Box my={5}>
+        <Box my={3}>
           <Filter
             filters={FILTERS}
             activeFilters={activeFilters}
@@ -90,18 +98,16 @@ export default function Home() {
           />
         </Box>
 
-
-        <Box my={5}>
-        {currentAccount === "" ? (
+        <Box my={3}>
+          {currentAccount === "" ? (
             <ConnectWallet setCurrentAccount={setCurrentAccount} />
           ) : (
-            <MintNFT  currentImg={currentImg} />
+            <MintNFT currentImg={currentImg} />
           )}
         </Box>
       </main>
 
-      <footer className={styles.footer}>
-      </footer>
+      <footer className={styles.footer}></footer>
     </>
   );
 }

@@ -10,7 +10,11 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import Paper from "@mui/material/Paper";
+import Stack from "@mui/material/Stack";
 import InputBase from "@mui/material/InputBase";
+import ImageSearchIcon from "@mui/icons-material/ImageSearch";
+import TwitterIcon from "@mui/icons-material/Twitter";
+import RocketLaunchIcon from "@mui/icons-material/RocketLaunch";
 
 const mode = "production";
 const contracts = {
@@ -23,7 +27,7 @@ const style = {
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: 400,
+  width: 500,
   bgcolor: "background.paper",
   border: "2px solid #000",
   boxShadow: 24,
@@ -35,6 +39,7 @@ const WEBSITE = "nft.9k.ninja";
 
 function MintNFT({ currentImg }) {
   const [address, setAddress] = useState("");
+  const [loadingMessage, setLoadingMessage] = useState('');
   const [loadingModalStatus, setLoadingModalStatus] = useState(false);
   const [infoModalStatus, setInfoModalStatus] = useState(false);
   const [network, setNetwork] = useState("");
@@ -57,12 +62,12 @@ function MintNFT({ currentImg }) {
         console.log("Going to pop wallet now to pay gas...");
         let nftTxn = await connectedContract.makeGiftNFT(address, url, title);
 
-        console.log("Mining...please wait.");
+        setLoadingMessage("Mining... please wait.");
         setLoadingModalStatus(true);
         await nftTxn.wait();
-
-        console.log("Finish");
-        setLoadingModalStatus(false);
+        
+        setLoadingMessage("Mining finished successfully. Please hold on while generating the NFT info");
+        setLoadingModalStatus(true);
 
         connectedContract.on("NewGiftNFTMinted", (from, tokenId) => {
           setLoadingModalStatus(false);
@@ -114,9 +119,7 @@ function MintNFT({ currentImg }) {
             width: 500,
           }}
         >
-          <FormControl
-            sx={{ flex: 1 }}
-          >
+          <FormControl sx={{ flex: 1 }}>
             <InputLabel id="network-select-label">Network</InputLabel>
             <Select
               labelId="network-select-label"
@@ -142,8 +145,7 @@ function MintNFT({ currentImg }) {
             onInput={handleSetInputAddress}
             placeholder="Receiver Address"
           />
-          <Button onClick={handleButtonClick}>
-            <ion-icon name="planet"></ion-icon>
+          <Button onClick={handleButtonClick} startIcon={<RocketLaunchIcon />}>
             Gift Card Now
           </Button>
         </Paper>
@@ -154,7 +156,7 @@ function MintNFT({ currentImg }) {
         open={loadingModalStatus}
         onClose={() => setLoadingModalStatus(false)}
       >
-        <Box sx={style}>Minting...please wait.</Box>
+        <Box sx={style}>{loadingMessage}</Box>
       </Modal>
       <Modal
         id="infoModal"
@@ -163,32 +165,31 @@ function MintNFT({ currentImg }) {
       >
         <Box sx={style}>
           <p>
-            Hey there! We have minted your NFT. It may be blank right now. It can
-            take a max of 10 min to show up on OpenSea.
+            Hey there! We have minted your NFT. It may be blank right now. It
+            can take a max of 10 min to show up on OpenSea.
           </p>
-          <div className="modal-row">
-            <a
-              className="button"
-              style={{ margin: "auto" }}
+          <Stack direction="row" spacing={2}>
+            <Button
               href={getNftURL()}
               target="_blank"
               rel="noreferrer"
+              startIcon={<ImageSearchIcon />}
             >
-              <ion-icon name="image"></ion-icon>
               Check your NFT
-            </a>
+            </Button>
 
-            <a
-              className="button"
+            <Button
               target="_blank"
+              variant="contained"
               href={`
             http://twitter.com/share?text=I've created this awesome NFT gift using: ${WEBSITE} &url=${getNftURL()}&hashtags=nfts,polygon,gifts
             `}
               rel="noreferrer"
+              startIcon={<TwitterIcon />}
             >
-              <ion-icon name="logo-twitter"></ion-icon> Share on Twitter
-            </a>
-          </div>
+              Share on Twitter
+            </Button>
+          </Stack>
         </Box>
       </Modal>
     </>
