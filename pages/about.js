@@ -7,6 +7,7 @@ import CardMedia from "@mui/material/CardMedia";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import IconButton from "@mui/material/IconButton";
+import Box from "@mui/material/Box";
 
 import GitHubIcon from "@mui/icons-material/GitHub";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
@@ -38,22 +39,21 @@ export default function About() {
         </Typography>
 
         <Grid container spacing={3} justifyContent="center" alignItems="center">
-          <Grid item xs={4}>
+          <Grid item  container xs={12} sm={6} md={4} justifyContent="center">
             <Card sx={{ maxWidth: 345 }}>
-              <CardMedia
-                component="img"
-                height="300"
-                image="/images/avatars/m.behairy.jpg"
-                alt="Mohamed Behairy"
-              />
+              <Box className={styles.avatarWrapper}>
+                <CardMedia
+                  component="img"
+                  height="300"
+                  image="/images/avatars/m.behairy.jpg"
+                  alt="Mohamed Behairy"
+                />
+              </Box>
               <CardContent>
                 <Typography gutterBottom variant="h5" component="div">
                   Mohamed Behairy
                 </Typography>
-                <Typography variant="body2" color="text.secondary">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod
-                  sit cum, quas consequuntur deleniti.
-                </Typography>
+                <Typography variant="body2" color="text.secondary"></Typography>
               </CardContent>
               <CardActions>
                 <IconButton
@@ -81,24 +81,26 @@ export default function About() {
             </Card>
           </Grid>
 
-          <Grid item xs={4}>
+          <Grid item  container xs={12} sm={6} md={4} justifyContent="center">
             <Card sx={{ maxWidth: 345 }}>
-              <CardMedia
-                component="img"
-                height="300"
-                image="/images/avatars/a.ismail.png"
-                alt="Abdelrahman Ismail"
-              />
+              <Box className={styles.avatarWrapper}>
+                <CardMedia
+                  component="img"
+                  height="300"
+                  image="/images/avatars/a.ismail.png"
+                  alt="Abdelrahman Ismail"
+                />
+              </Box>
               <CardContent>
-                <Typography gutterBottom variant="h5" component="div">
+                <Typography
+                  gutterBottom
+                  variant="h5"
+                  component="div"
+                >
                   Abdelrahman Ismail
                 </Typography>
-                <Typography variant="body2" color="text.secondary">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod
-                  sit cum, quas consequuntur deleniti.
-                </Typography>
               </CardContent>
-              <CardActions>
+              <CardActions align="center">
                 <IconButton
                   color="primary"
                   href="https://github.com/ismail9k"

@@ -12,9 +12,9 @@ import MintNFT from "../components/MintNFT";
 import Footer from "../components/Footer";
 import images from "../assets/images";
 
-const FILTERS = ["birthday", "ramadan"];
+const FILTERS = ["birthday", "ramadan", "nature"];
 export default function Home() {
-  const [activeFilters, setActiveFilters] = useState(FILTERS);
+  const [activeFilters, setActiveFilters] = useState([]);
   const [currentImg, setCurrentImg] = useState(images[0]);
   const [currentAccount, setCurrentAccount] = useState("");
 
@@ -39,10 +39,14 @@ export default function Home() {
     checkIfWalletIsConnected();
   }, []);
 
-  const getFilteredImages = () =>
-    images.filter((img) =>
+  const getFilteredImages = () => {
+    if (!activeFilters.length) {
+      return images;
+    }
+    return images.filter((img) =>
       activeFilters.some((filter) => img.tags.includes(filter))
     );
+  }
 
   const handleFilterClick = (filter) => {
     if (!activeFilters.includes(filter)) {

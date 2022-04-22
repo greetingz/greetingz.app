@@ -1,5 +1,5 @@
 const styles = {
-  position: 'fixed',
+  position: 'absolute',
   width: 80,
   height: 25,
   background: '#a777e3',

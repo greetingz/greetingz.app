@@ -150,7 +150,7 @@ function MintNFT({ currentImg }) {
             placeholder="Receiver Address"
           />
           <Button onClick={handleButtonClick} startIcon={<RocketLaunchIcon />}>
-            Gift Card Now
+            Send Greeting
           </Button>
         </Paper>
       </Box>
