@@ -65,14 +65,14 @@ export default function About() {
                 </IconButton>
                 <IconButton
                   color="primary"
-                  href="https://github.com/MoShaaban"
+                  href="https://www.linkedin.com/in/mohammadshaaban/"
                   target="_blank"
                 >
                   <LinkedInIcon />
                 </IconButton>
                 <IconButton
                   color="primary"
-                  href="https://github.com/MoShaaban"
+                  href="https://twitter.com/Behairy313"
                   target="_blank"
                 >
                   <TwitterIcon />
@@ -118,6 +118,51 @@ export default function About() {
                 <IconButton
                   color="primary"
                   href="https://twitter.com/ismail_9k"
+                  target="_blank"
+                >
+                  <TwitterIcon />
+                </IconButton>
+              </CardActions>
+            </Card>
+          </Grid>
+
+          <Grid item  container xs={12} sm={6} md={4} justifyContent="center">
+            <Card sx={{ maxWidth: 345 }}>
+              <Box className={styles.avatarWrapper}>
+                <CardMedia
+                  component="img"
+                  height="300"
+                  image="/images/avatars/e.herawy.jpg"
+                  alt="Abdelrahman Ismail"
+                />
+              </Box>
+              <CardContent>
+                <Typography
+                  gutterBottom
+                  variant="h5"
+                  component="div"
+                >
+                  Eman Herawy
+                </Typography>
+              </CardContent>
+              <CardActions align="center">
+                <IconButton
+                  color="primary"
+                  href="https://github.com/EmanHerawy"
+                  target="_blank"
+                >
+                  <GitHubIcon />
+                </IconButton>
+                <IconButton
+                  color="primary"
+                  href="https://www.linkedin.com/in/emanherawy/"
+                  target="_blank"
+                >
+                  <LinkedInIcon />
+                </IconButton>
+                <IconButton
+                  color="primary"
+                  href="https://twitter.com/Eman_Herawy"
                   target="_blank"
                 >
                   <TwitterIcon />

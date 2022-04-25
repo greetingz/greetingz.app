@@ -33,14 +33,16 @@ const ResponsiveAppBar = () => {
       <Beta />
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <Typography
-            variant="h6"
-            noWrap
-            component="div"
-            sx={{ mr: 2, display: { xs: "none", md: "flex" } }}
-          >
-            Greetings
-          </Typography>
+          <NextLink href="/" passHref>
+            <Typography
+              variant="h6"
+              noWrap
+              component="div"
+              sx={{ mr: 2, display: { xs: "none", md: "flex" } }}
+            >
+              Greetings
+            </Typography>
+          </NextLink>
 
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
             <IconButton
@@ -97,7 +99,6 @@ const ResponsiveAppBar = () => {
                 >
                   {page.title}
                 </Button>
-
               </NextLink>
             ))}
           </Box>
