@@ -13,30 +13,18 @@ import Footer from "../components/Footer";
 import images from "../assets/images";
 
 const FILTERS = ["birthday", "ramadan"];
+
 export default function Home() {
   const [activeFilters, setActiveFilters] = useState([]);
   const [currentImg, setCurrentImg] = useState(images[0]);
   const [currentAccount, setCurrentAccount] = useState("");
 
   const checkIfWalletIsConnected = async () => {
-    const { ethereum } = window;
-
-    if (!ethereum) {
-      alert("Make sure you have metamask!");
-      return;
-    }
-
-    // Check if we're authorized to access the user's wallet
-    const accounts = await ethereum.request({ method: "eth_accounts" });
-
-    // User can have multiple authorized accounts, we grab the first one if its there!
-    if (accounts.length) {
-      setCurrentAccount(accounts[0]);
-    }
+    // TODO:
   };
 
   useEffect(() => {
-    checkIfWalletIsConnected();
+    // checkIfWalletIsConnected();
   }, []);
 
   const getFilteredImages = () => {
@@ -46,7 +34,7 @@ export default function Home() {
     return images.filter((img) =>
       activeFilters.some((filter) => img.tags.includes(filter))
     );
-  }
+  };
 
   const handleFilterClick = (filter) => {
     if (!activeFilters.includes(filter)) {
@@ -110,7 +98,6 @@ export default function Home() {
             <MintNFT currentImg={currentImg} />
           )}
         </Box>
-
       </main>
       <Footer />
     </>

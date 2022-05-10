@@ -18,7 +18,7 @@ import ImageSearchIcon from "@mui/icons-material/ImageSearch";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import RocketLaunchIcon from "@mui/icons-material/RocketLaunch";
 
-const mode = "production";
+const mode = "dev";
 const contracts = {
   production: "0x0f4aCe25b692d452dd5D089BeF4FD6f579370648",
   dev: "0x43669CDC544a73482639e6aA950b11BcF621d049",
@@ -50,41 +50,34 @@ function MintNFT({ currentImg }) {
 
   async function mintNFT(address, url, title) {
     try {
-      const { ethereum } = window;
+      const { signer } = window;
+      const connectedContract = new ethers.Contract(
+        CONTRACT_ADDRESS,
+        giftNFT.abi,
+        signer
+      );
 
-      if (ethereum) {
-        const provider = new ethers.providers.Web3Provider(ethereum);
-        const signer = provider.getSigner();
-        const connectedContract = new ethers.Contract(
-          CONTRACT_ADDRESS,
-          giftNFT.abi,
-          signer
-        );
+      console.log("Going to pop wallet now to pay gas...");
+      let nftTxn = await connectedContract.makeGiftNFT(address, url, title);
 
-        console.log("Going to pop wallet now to pay gas...");
-        let nftTxn = await connectedContract.makeGiftNFT(address, url, title);
+      setLoadingMessage("Mining... please wait.");
+      setLoadingStatus(true);
+      await nftTxn.wait();
 
-        setLoadingMessage("Mining... please wait.");
-        setLoadingStatus(true);
-        await nftTxn.wait();
+      setLoadingMessage(
+        "Mining finished successfully. Please hold on while generating the NFT info"
+      );
+      setLoadingStatus(true);
 
-        setLoadingMessage(
-          "Mining finished successfully. Please hold on while generating the NFT info"
-        );
-        setLoadingStatus(true);
+      connectedContract.on("NewGiftNFTMinted", (from, tokenId) => {
+        setLoadingStatus(false);
+        setTokenId(tokenId.toNumber());
+        setInfoModalStatus(true);
+      });
 
-        connectedContract.on("NewGiftNFTMinted", (from, tokenId) => {
-          setLoadingStatus(false);
-          setTokenId(tokenId.toNumber());
-          setInfoModalStatus(true);
-        });
-
-        console.log(
-          `Mined, see transaction: https://rinkeby.etherscan.io/tx/${nftTxn.hash}`
-        );
-      } else {
-        console.log("Ethereum object doesn't exist!");
-      }
+      console.log(
+        `Mined, see transaction: https://rinkeby.etherscan.io/tx/${nftTxn.hash}`
+      );
     } catch (error) {
       setLoadingStatus(false);
       console.log(error);
