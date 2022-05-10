@@ -18,12 +18,6 @@ import ImageSearchIcon from "@mui/icons-material/ImageSearch";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import RocketLaunchIcon from "@mui/icons-material/RocketLaunch";
 
-const mode = "dev";
-const contracts = {
-  production: "0x0f4aCe25b692d452dd5D089BeF4FD6f579370648",
-  dev: "0x43669CDC544a73482639e6aA950b11BcF621d049",
-};
-
 const style = {
   position: "absolute",
   top: "50%",
@@ -36,8 +30,11 @@ const style = {
   p: 4,
 };
 
-const CONTRACT_ADDRESS = contracts[mode];
-const WEBSITE = "nft.9k.ninja";
+const CONTRACT_ADDRESS = process.env.NEXT_PUBLIC_CONTRACT_ADDRESS;
+const DOMAIN = process.env.NEXT_PUBLIC_DOMAIN;
+const ENV = process.env.NEXT_PUBLIC_ENV;
+
+const isDev = ENV !== "production";
 
 function MintNFT({ currentImg }) {
   const [address, setAddress] = useState("");
@@ -98,7 +95,6 @@ function MintNFT({ currentImg }) {
   }
 
   function getNftURL() {
-    const isDev = mode === "dev";
     return `https://${isDev ? "testnets." : ""}opensea.io/assets/${
       !isDev ? "matic/" : ""
     }${CONTRACT_ADDRESS}/${tokenId}`;
@@ -182,7 +178,7 @@ function MintNFT({ currentImg }) {
               target="_blank"
               variant="contained"
               href={`
-            http://twitter.com/share?text=I've created this awesome NFT gift using: ${WEBSITE} &url=${getNftURL()}&hashtags=nfts,polygon,gifts
+            http://twitter.com/share?text=I've created this awesome NFT gift using: ${DOMAIN} &url=${getNftURL()}&hashtags=nfts,polygon,gifts
             `}
               rel="noreferrer"
               startIcon={<TwitterIcon />}

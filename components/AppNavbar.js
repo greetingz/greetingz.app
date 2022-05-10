@@ -10,7 +10,9 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
+
 import Beta from "../components/Beta";
+import ConnectWallet from "../components/ConnectWallet";
 
 const pages = [
   { title: "Home", link: "/" },
@@ -29,7 +31,7 @@ const ResponsiveAppBar = () => {
   };
 
   return (
-    <AppBar position="static">
+    <AppBar position="sticky">
       <Beta />
       <Container maxWidth="xl">
         <Toolbar disableGutters>
@@ -88,7 +90,7 @@ const ResponsiveAppBar = () => {
             component="div"
             sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}
           >
-            Greetings
+            Greetingz
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {pages.map((page) => (
@@ -102,6 +104,8 @@ const ResponsiveAppBar = () => {
               </NextLink>
             ))}
           </Box>
+
+          {/* <ConnectWallet /> */}
         </Toolbar>
       </Container>
     </AppBar>

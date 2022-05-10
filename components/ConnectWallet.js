@@ -53,7 +53,7 @@ function ConnectWallet({ setCurrentAccount }) {
 
   return (
     <Button onClick={handleWalletConnect} variant="contained" size="large">
-      Connect to Wallet
+      Connect Wallet
     </Button>
   );
 }
