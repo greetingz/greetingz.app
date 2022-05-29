@@ -12,7 +12,14 @@ import MintNFT from "../components/MintNFT";
 import Footer from "../components/Footer";
 import images from "../assets/images";
 
-const FILTERS = ["birthday", "ramadan"];
+const FILTERS = () => {
+  const output = images.reduce((outputSet, current) => {
+    current.tags.forEach((item) => outputSet.add(item));
+    return outputSet;
+  }, new Set());
+
+  return [...output];
+};
 
 export default function Home() {
   const [activeFilters, setActiveFilters] = useState([]);

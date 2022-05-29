@@ -10,6 +10,7 @@ const Filter = ({ activeFilters, filters, onClick }) => {
           label={filter}
           variant={activeFilters.includes(filter) ? "" : "outlined"}
           onClick={() => onClick(filter)}
+          style={{ textTransform: "capitalize" }}
         />
       ))}
     </Stack>
