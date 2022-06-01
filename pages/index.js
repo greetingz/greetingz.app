@@ -1,4 +1,5 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
 import Typography from "@mui/material/Typography";
@@ -11,6 +12,7 @@ import ConnectWallet from "../components/ConnectWallet";
 import MintNFT from "../components/MintNFT";
 import Footer from "../components/Footer";
 import images from "../assets/images";
+import UserContext from "../store/UserContext";
 
 const FILTERS = (() => {
   const output = images.reduce((outputSet, current) => {
@@ -24,7 +26,7 @@ const FILTERS = (() => {
 export default function Home() {
   const [activeFilters, setActiveFilters] = useState([]);
   const [currentImg, setCurrentImg] = useState(images[0]);
-  const [currentAccount, setCurrentAccount] = useState("");
+  const { user } = useContext(UserContext);
 
   const checkIfWalletIsConnected = async () => {
     // TODO:
@@ -99,8 +101,8 @@ export default function Home() {
         </Box>
 
         <Box my={3}>
-          {currentAccount === "" ? (
-            <ConnectWallet setCurrentAccount={setCurrentAccount} />
+          {user === "" ? (
+            <ConnectWallet />
           ) : (
             <MintNFT currentImg={currentImg} />
           )}

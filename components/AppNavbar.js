@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import NextLink from "next/link";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -11,6 +11,7 @@ import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
 
+import UserContext from "../store/UserContext";
 import Beta from "../components/Beta";
 import ConnectWallet from "../components/ConnectWallet";
 
@@ -20,6 +21,8 @@ const pages = [
 ];
 
 const ResponsiveAppBar = () => {
+  const { user } = useContext(UserContext);
+
   const [anchorElNav, setAnchorElNav] = useState(null);
 
   const handleOpenNavMenu = (event) => {
@@ -105,7 +108,15 @@ const ResponsiveAppBar = () => {
             ))}
           </Box>
 
-          {/* <ConnectWallet /> */}
+          {user ? (
+            <NextLink href={`/user/${user}`} passHref>
+              <Button variant="contained" size="large">
+                Timeline
+              </Button>
+            </NextLink>
+          ) : (
+            <ConnectWallet />
+          )}
         </Toolbar>
       </Container>
     </AppBar>

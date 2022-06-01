@@ -1,7 +1,9 @@
+import { useContext } from "react";
 import { ethers } from "ethers";
 import Button from "@mui/material/Button";
 import Web3Modal from "web3modal";
 import WalletConnectProvider from "@walletconnect/web3-provider";
+import UserContext from "../store/UserContext";
 
 const providerOptions = {
   binancechainwallet: {
@@ -30,7 +32,9 @@ const providerOptions = {
   },
 };
 
-function ConnectWallet({ setCurrentAccount }) {
+function ConnectWallet() {
+  const { setUser } = useContext(UserContext);
+
   const handleWalletConnect = async () => {
     try {
       const web3Modal = new Web3Modal({
@@ -45,7 +49,7 @@ function ConnectWallet({ setCurrentAccount }) {
       window.signer = signer;
 
       const account = await signer.getAddress();
-      setCurrentAccount(account);
+      setUser(account);
     } catch (error) {
       console.log(error);
     }

@@ -16,7 +16,6 @@ import TimelineContent from "@mui/lab/TimelineContent";
 import TimelineDot from "@mui/lab/TimelineDot";
 
 export default function About(props) {
-  console.log("props", props);
   return (
     <>
       <Head>
@@ -64,26 +63,7 @@ export default function About(props) {
   );
 }
 
-export async function getStaticPaths(props) {
-  const { data } = await client.query({
-    query: gql`
-      query Users {
-        users(first: 10) {
-          id
-        }
-      }
-    `,
-  });
-
-  const paths =
-    data?.users?.map(({ id }) => ({
-      params: { id },
-    })) ?? [];
-
-  return { paths, fallback: false };
-}
-
-export async function getStaticProps(props) {
+export async function getServerSideProps(props) {
   const { id } = props.params;
   const { data: usersData } = await client.query({
     query: gql`
@@ -95,7 +75,7 @@ export async function getStaticProps(props) {
         }
       }
     `,
-    variables: { id },
+    variables: { id: id.toLowerCase() },
   });
 
   const tokenIds = usersData?.users[0]?.tokens?.map(({ id }) => id) ?? [];
