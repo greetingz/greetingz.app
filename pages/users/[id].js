@@ -1,5 +1,5 @@
 import Head from "next/head";
-import { useRouter } from "next/router";
+import NextLink from "next/link";
 import styles from "../../styles/Home.module.css";
 import Typography from "@mui/material/Typography";
 import { gql } from "@apollo/client";
@@ -16,10 +16,16 @@ import TimelineContent from "@mui/lab/TimelineContent";
 import TimelineDot from "@mui/lab/TimelineDot";
 
 export default function About(props) {
+  const getUserId = (id) => {
+    const charCount = 5;
+    const start = id.slice(0, charCount);
+    const end = id.slice(id.length - charCount);
+    return `${start}...${end}`;
+  };
   return (
     <>
       <Head>
-        <title>user</title>
+        <title>Users</title>
         <meta
           name="description"
           content="Gift an awesome NFT to your friends"
@@ -39,19 +45,34 @@ export default function About(props) {
         </Typography>
 
         <Timeline position="right">
-          {props.images.map((item) => (
-            <TimelineItem key={item.image}>
+          {props.images.map((item, index) => (
+            <TimelineItem key={index}>
               <TimelineSeparator>
                 <TimelineDot />
                 <TimelineConnector />
               </TimelineSeparator>
               <TimelineContent>
                 <img
-                  src={item.image}
+                  src={item.nft.image}
                   alt={item.name}
                   loading="lazy"
                   width={400}
                 />
+
+                <div>
+                  <span>Owner: </span>
+                  <NextLink href={`/users/${item.owner}`} passHref>
+                    <a className={styles.highlight}>{getUserId(item.owner)}</a>
+                  </NextLink>
+                </div>
+                <div>
+                  <span>Creator: </span>
+                  <NextLink href={`/users/${item.creator}`} passHref>
+                    <a className={styles.highlight}>
+                      {getUserId(item.creator)}
+                    </a>
+                  </NextLink>
+                </div>
               </TimelineContent>
             </TimelineItem>
           ))}
@@ -65,11 +86,19 @@ export default function About(props) {
 
 export async function getServerSideProps(props) {
   const { id } = props.params;
-  const { data: usersData } = await client.query({
+
+  const { data: tokensData } = await client.query({
     query: gql`
-      query Users($id: ID) {
-        users(where: { id: $id }) {
-          tokens {
+      query Tokens($id: ID) {
+        tokens(where: { creator: $id }) {
+          id
+          tokenID
+          contentURI
+          name
+          owner {
+            id
+          }
+          creator {
             id
           }
         }
@@ -78,24 +107,12 @@ export async function getServerSideProps(props) {
     variables: { id: id.toLowerCase() },
   });
 
-  const tokenIds = usersData?.users[0]?.tokens?.map(({ id }) => id) ?? [];
-  const { data: tokensData } = await client.query({
-    query: gql`
-      query Tokens($tokenIds: [ID]) {
-        tokens(where: { id_in: $tokenIds }) {
-          id
-          tokenID
-          contentURI
-          name
-        }
-      }
-    `,
-    variables: { tokenIds },
-  });
+  const images = tokensData.tokens.map(({ contentURI, owner, creator }) => ({
+    nft: decodeBase64(contentURI),
+    owner: owner.id,
+    creator: creator.id,
+  }));
 
-  const images = tokensData.tokens.map(({ contentURI }) =>
-    decodeBase64(contentURI)
-  );
   return {
     props: {
       id,
