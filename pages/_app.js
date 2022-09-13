@@ -5,6 +5,7 @@ import Container from "@mui/material/Container";
 import AppNavbar from "../components/AppNavbar";
 
 import createEmotionCache from "../utility/createEmotionCache";
+import { web3ModalConnect } from "../utility/web3Modal";
 import darkTheme from "../styles/theme/darkTheme";
 import UserContext from "../store/UserContext";
 import "../styles/globals.css";
@@ -20,7 +21,9 @@ function MyApp(props) {
     <CacheProvider value={emotionCache}>
       <ThemeProvider theme={darkTheme}>
         <CssBaseline />
-        <UserContext.Provider value={{ user, setUser }}>
+        <UserContext.Provider
+          value={{ user, setUser, connectWallet: web3ModalConnect }}
+        >
           <AppNavbar />
           <Container>
             <Component {...pageProps} />

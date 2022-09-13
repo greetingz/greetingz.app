@@ -1,57 +1,21 @@
-import { useContext } from "react";
-import { ethers } from "ethers";
+import { useContext, useEffect } from "react";
 import Button from "@mui/material/Button";
-import Web3Modal from "web3modal";
-import WalletConnectProvider from "@walletconnect/web3-provider";
+
 import UserContext from "../store/UserContext";
 
-const providerOptions = {
-  binancechainwallet: {
-    package: true,
-  },
-  walletconnect: {
-    package: WalletConnectProvider,
-    options: {
-      rpc: {
-        1: "https://mainnet.infura.io/v3/", // Ethereum Mainnet
-        4: "https://rinkeby.infura.io/v3/", // Rinkeby Test Network
-        137: "https://polygon-rpc.com/", // Polygon
-      },
-      qrcodeModalOptions: {
-        mobileLinks: [
-          "metamask",
-          "rainbow",
-          "argent",
-          "trust",
-          "imtoken",
-          "pillar",
-        ],
-      },
-      // bridge: 'https://bridge.walletconnect.org',
-    },
-  },
-};
-
 function ConnectWallet() {
-  const { setUser } = useContext(UserContext);
+  const { setUser, connectWallet } = useContext(UserContext);
+
+  useEffect(() => {
+    if (localStorage.getItem("WEB3_CONNECT_CACHED_PROVIDER")) {
+      handleWalletConnect();
+    }
+  }, []);
 
   const handleWalletConnect = async () => {
-    try {
-      const web3Modal = new Web3Modal({
-        network: "mainnet", // optional
-        cacheProvider: true, // optional
-        providerOptions, // required
-      });
-
-      const instance = await web3Modal.connect();
-      const provider = new ethers.providers.Web3Provider(instance);
-      const signer = provider.getSigner();
-      window.signer = signer;
-
-      const account = await signer.getAddress();
-      setUser(account);
-    } catch (error) {
-      console.log(error);
+    const user = await connectWallet();
+    if (user) {
+      setUser(user);
     }
   };
 
