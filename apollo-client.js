@@ -1,7 +1,7 @@
 import { ApolloClient, InMemoryCache } from "@apollo/client";
 
 const client = new ApolloClient({
-  uri: "https://api.thegraph.com/subgraphs/name/emanherawy/greetingz",
+  uri: process.env.NEXT_PUBLIC_GRAPH_URI,
   cache: new InMemoryCache(),
 });
 
