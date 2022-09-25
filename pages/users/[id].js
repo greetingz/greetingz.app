@@ -53,7 +53,7 @@ export default function About(props) {
               </TimelineSeparator>
               <TimelineContent>
                 <img
-                  src={item.nft.image}
+                  src={item.image}
                   alt={item.name}
                   loading="lazy"
                   width={400}
@@ -92,7 +92,6 @@ export async function getServerSideProps(props) {
       query Tokens($id: ID) {
         tokens(where: { creator: $id }) {
           id
-          tokenID
           contentURI
           name
           owner {
@@ -107,11 +106,14 @@ export async function getServerSideProps(props) {
     variables: { id: id.toLowerCase() },
   });
 
-  const images = tokensData.tokens.map(({ contentURI, owner, creator }) => ({
-    nft: decodeBase64(contentURI),
-    owner: owner.id,
-    creator: creator.id,
-  }));
+  const images = tokensData.tokens.map(
+    ({ contentURI, owner, creator, image }) => ({
+      nft: decodeBase64(contentURI),
+      image,
+      owner: owner.id,
+      creator: creator.id,
+    })
+  );
 
   return {
     props: {
