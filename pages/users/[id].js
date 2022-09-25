@@ -87,7 +87,7 @@ export default function About(props) {
 export async function getServerSideProps(props) {
   const { id } = props.params;
 
-  const { data: tokensData } = await client.query({
+  const { data: creatorTokensData } = await client.query({
     query: gql`
       query Tokens($id: ID) {
         tokens(where: { creator: $id }) {
@@ -107,8 +107,38 @@ export async function getServerSideProps(props) {
     variables: { id: id.toLowerCase() },
   });
 
-  const images = tokensData.tokens.map(
-    ({ contentURI, owner, creator, image }) => ({
+  const { data: ownerTokensData } = await client.query({
+    query: gql`
+      query Tokens($id: ID) {
+        tokens(where: { owner: $id }) {
+          id
+          contentURI
+          name
+          image
+          owner {
+            id
+          }
+          creator {
+            id
+          }
+        }
+      }
+    `,
+    variables: { id: id.toLowerCase() },
+  });
+
+  const images = [];
+  creatorTokensData.tokens.forEach(({ contentURI, owner, creator, image }) =>
+    images.push({
+      nft: decodeBase64(contentURI),
+      image,
+      owner: owner.id,
+      creator: creator.id,
+    })
+  );
+
+  ownerTokensData.tokens.forEach(({ contentURI, owner, creator, image }) =>
+    images.push({
       nft: decodeBase64(contentURI),
       image,
       owner: owner.id,
