@@ -94,6 +94,7 @@ export async function getServerSideProps(props) {
           id
           contentURI
           name
+          image
           owner {
             id
           }
