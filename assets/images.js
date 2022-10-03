@@ -1,21 +1,26 @@
 const images = [
   {
-    name: "happy birthday orbit",
+    name: "Happy birthday orbit",
     cid: "bafkreidj2dzduucyspjsce7uxpg2mynxlydobkd2jbjj6q3qgxc2zknwvq",
     tags: ["birthday"],
   },
   {
-    name: "happy birthday sunflower",
+    name: "Soft pink playful happy birthday greetings instagram post",
+    cid: "bafybeidy34r47wkwuw6ar5vggpxzjqqcsrjvz5xp4fqr2uc4wfmk5b5lxq",
+    tags: ["birthday"],
+  },
+  {
+    name: "Happy birthday sunflower",
     cid: "bafkreicjcyu64debg4ozrw2mspv2qjgcb6fewb5eg44n2byv2quqqjs73u",
     tags: ["birthday"],
   },
   {
-    name: "happy birthday tree trunk",
+    name: "Happy birthday tree trunk",
     cid: "bafkreiatbn46gqt6ul5cqw2dthxe3h55wqhiqkawnjhimbah7l4sbopthy",
     tags: ["birthday"],
   },
   {
-    name: "ramadan kareem",
+    name: "Ramadan kareem",
     cid: "bafkreifkdw4jew44afimw6rie6vqhjwsxwntuvdm3qvzochprw2xnv6hgy",
     tags: ["ramadan"],
   },
