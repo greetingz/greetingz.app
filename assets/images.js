@@ -65,6 +65,21 @@ const images = [
     tags: ["ramadan"],
   },
   {
+    name: "Black monochrome Ramadan greeting card",
+    cid: "bafkreigvatpjzyonq3iildeqryjjgadyda6mgsctnh6w3ar24xjqz6x5ky",
+    tags: ["ramadan"],
+  },
+  {
+    name: "Ramadan Kareem, Happy ramadan in Arabic رمضان كريم ",
+    cid: "bafkreihxb3rdivh2xakytzwipvyjkm2nirx2d5yurl5wklyzqiajgmhzcy",
+    tags: ["ramadan"],
+  },
+  {
+    name: "Green Modern Cheeky Ramadan Mubarak Greeting Card Instagram Post",
+    cid: "bafkreibdxwtebigx254akibdmneqjd4nt56ewalnussne2i67gxxm7y5im",
+    tags: ["ramadan"],
+  },
+  {
     name: "Babies, the Stars of our skies",
     cid: "bafkreidms4idt5cgpowcehzjr4tkvgfc7wli46hmf72q6ywnspkifiq4jm",
     tags: ["baby"],
