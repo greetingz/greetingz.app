@@ -5,6 +5,11 @@ const images = [
     tags: ["birthday"],
   },
   {
+    name: "Pink Happy Birthday Greeting Card",
+    cid: "bafkreibenjflewb4dro3oagt73fzsogc7ial2e3y23gfojzsgms2id5qt4",
+    tags: ["birthday"],
+  },
+  {
     name: "Black Colorful Happy Birthday Greetings",
     cid: "bafkreifx2vn3gyv4xdcnsq3hzlqajux4bjr2lqyvkyrlodkp54iainlyoq",
     tags: ["birthday"],
