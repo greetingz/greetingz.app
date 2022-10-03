@@ -139,6 +139,31 @@ const images = [
     cid: "bafybeib5dhkabm46zm626foabkohbvkgk2inqatvcspwuwpw62dukdb7qm",
     tags: ["love"],
   },
+  {
+    name: "Happy Halloween Greeting",
+    cid: "bafkreigomq4cz66c7fzsk3kudsc24gi3rvcycwkqil5gh6fn25jqslw6ye",
+    tags: ["Halloween"],
+  },
+  {
+    name: "Orange Spooky Skulls and Bones Card",
+    cid: "bafkreiaxoyrkdzyf532ufy3dyqnu4wjrvpnqer6e47cxo66rgttgx7ei3e",
+    tags: ["Halloween"],
+  },
+  {
+    name: "Happy Thankgsgiving with turkey",
+    cid: "bafkreicw7ll2efhmgg4ai7bduq6j5afnrp2p457mdqalqql7a7i2akcfbm",
+    tags: ["Thanksgiving"],
+  },
+  {
+    name: "Happy Thankgsgiving! Don't mind the viggies ;)",
+    cid: "bafkreihhgkkxlh4ncijryw6ns6v5fco7hahhyeiuubbtoq4cjblgn4tyye",
+    tags: ["Thanksgiving"],
+  },
+  {
+    name: "Happy Thankgsgiving! I just wish I didn't have to share the turkey",
+    cid: "bafkreiaqn2t2hwxsjker6nl7fganzefyxcxxmzzqxxwkdnwoav4zciwx4q",
+    tags: ["Thanksgiving"],
+  },
 ].map((img) => ({
   ...img,
   url: `https://${img.cid}.ipfs.${process.env.NEXT_PUBLIC_IPFS_GATEWAY}`,
