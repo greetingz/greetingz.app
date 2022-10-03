@@ -5,6 +5,11 @@ const images = [
     tags: ["birthday"],
   },
   {
+    name: "Black Colorful Happy Birthday Greetings",
+    cid: "bafkreifx2vn3gyv4xdcnsq3hzlqajux4bjr2lqyvkyrlodkp54iainlyoq",
+    tags: ["birthday"],
+  },
+  {
     name: "Brown Cream Simple Minimalist Happy Birthday",
     cid: "bafkreibdgzhkww4wv636ax3gnzu2pzwihvvwprsponm44brxyx3tj4hqbe",
     tags: ["birthday"],
