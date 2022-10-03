@@ -5,6 +5,11 @@ const images = [
     tags: ["birthday"],
   },
   {
+    name: "Happy Birthday Instagram post",
+    cid: "bafkreieucfroun4dtaewodk4pgfnywnafpofc4yevad2zxznnmq4iosgny",
+    tags: ["birthday"],
+  },
+  {
     name: "Pink Happy Birthday Greeting Card",
     cid: "bafkreibenjflewb4dro3oagt73fzsogc7ial2e3y23gfojzsgms2id5qt4",
     tags: ["birthday"],
