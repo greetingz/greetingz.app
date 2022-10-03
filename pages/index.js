@@ -78,7 +78,7 @@ export default function Home() {
           Gift an <span>NFT</span> Card
         </Typography>
 
-        <p className={styles.description}>celebrate in a futuristic way</p>
+        <p className={styles.description}>Celebrate in a futuristic way</p>
 
         <Box my={3}>
           <Canvas image={currentImg} />
