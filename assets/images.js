@@ -5,6 +5,11 @@ const images = [
     tags: ["birthday"],
   },
   {
+    name: "Brown Cream Simple Minimalist Happy Birthday",
+    cid: "bafkreibdgzhkww4wv636ax3gnzu2pzwihvvwprsponm44brxyx3tj4hqbe",
+    tags: ["birthday"],
+  },
+  {
     name: "Soft pink playful happy birthday greetings instagram post",
     cid: "bafybeidy34r47wkwuw6ar5vggpxzjqqcsrjvz5xp4fqr2uc4wfmk5b5lxq",
     tags: ["birthday"],
