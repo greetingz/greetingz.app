@@ -164,6 +164,31 @@ const images = [
     cid: "bafkreiaqn2t2hwxsjker6nl7fganzefyxcxxmzzqxxwkdnwoav4zciwx4q",
     tags: ["Thanksgiving"],
   },
+  {
+    name: "Mother's Day Baby feeding illustration",
+    cid: "bafkreifqmhlcrlogwo5k4zl3ecksg65pftbttq255p75nzfpxxzayxbhem",
+    tags: ["Mother's Day"],
+  },
+  {
+    name: "Pink And White Breastfeeding Happy Mother's Day",
+    cid: "bafkreifm4n5hjsqonetpli7cgalvowwhiec5mvebemurzdkdp2v2sd5dfq",
+    tags: ["Mother's Day"],
+  },
+  {
+    name: "Beige Breastfeeding Mom Happy Mother's Day",
+    cid: "bafkreiatgnjpqtd44jqitiu7xna25z55e67pe7byedf56llykfmutb34ya",
+    tags: ["Mother's Day"],
+  },
+  {
+    name: "Pink Happy Mother's Day",
+    cid: "bafkreidnyzkarharo35c62grevfq2sfdeycrhkceertsutiglcwaut7nzi",
+    tags: ["Mother's Day"],
+  },
+  {
+    name: "Pink floral happy Mother's Day",
+    cid: "bafybeicray5ufvpyzqd6vvbiwwutrwpztoprx4gdbxi5gx6wigxdyvnxm4",
+    tags: ["Mother's Day"],
+  },
 ].map((img) => ({
   ...img,
   url: `https://${img.cid}.ipfs.${process.env.NEXT_PUBLIC_IPFS_GATEWAY}`,
