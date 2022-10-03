@@ -5,6 +5,21 @@ const images = [
     tags: ["birthday"],
   },
   {
+    name: "Purple Happy Birthday",
+    cid: "bafkreidiixu52kgehl4bqkqyxnmverblizxzxhhnszwvmzruux7ce6pzva",
+    tags: ["birthday"],
+  },
+  {
+    name: "Orange Happy Birthday Greeting",
+    cid: "bafkreidgdvn5dm7a7ehz3ot7tfdkjgxxivh6b5xl3dlozodpeswd7sky44",
+    tags: ["birthday"],
+  },
+  {
+    name: "Blue and Gold 3d Modern Happy Birthday Balloon Greeting",
+    cid: "bafkreiapmv33srn3urgqladkz6od2cllcgmxz355jutwbdxm5elfk3cj3e",
+    tags: ["birthday"],
+  },
+  {
     name: "Happy Birthday Instagram post",
     cid: "bafkreieucfroun4dtaewodk4pgfnywnafpofc4yevad2zxznnmq4iosgny",
     tags: ["birthday"],
