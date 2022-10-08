@@ -1,5 +1,4 @@
 import Head from "next/head";
-import styles from "../styles/Home.module.css";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
@@ -15,6 +14,7 @@ import TwitterIcon from "@mui/icons-material/Twitter";
 import Container from "@mui/material/Container";
 
 import Footer from "../components/Footer";
+import { highlight } from "../styles/partial";
 
 export default function About() {
   return (
@@ -28,10 +28,10 @@ export default function About() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className={styles.main}>
-        <Container>
+      <main>
+        <Container sx={styles.container}>
           <Typography
-            className={styles.highlight}
+            sx={highlight}
             variant="h1"
             component="h1"
             gutterBottom
@@ -180,3 +180,13 @@ export default function About() {
     </>
   );
 }
+
+const styles = {
+  container: {
+    padding: "4rem 0",
+    flex: 1,
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+  },
+};

@@ -3,6 +3,7 @@ import { useState, useEffect, useContext } from "react";
 import Head from "next/head";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
+import Paper from "@mui/material/Paper";
 
 import Gallery from "../components/Gallery";
 import Filter from "../components/Filter";
@@ -13,6 +14,7 @@ import Footer from "../components/Footer";
 import images from "../assets/images";
 import UserContext from "../store/UserContext";
 import { Grid } from "@mui/material";
+import { highlight } from "../styles/partial";
 
 const FILTERS = (() => {
   const output = images.reduce((outputSet, current) => {
@@ -47,7 +49,7 @@ export default function Home() {
 
   const handleFilterClick = (filter) => {
     if (!activeFilters.includes(filter)) {
-      return setActiveFilters([...activeFilters, filter]);
+      return setActiveFilters([filter]);
     }
     setActiveFilters(activeFilters.filter((x) => x !== filter));
   };
@@ -69,7 +71,7 @@ export default function Home() {
 
       <main style={styles.main}>
         <Box sx={styles.wrapper}>
-          <Grid container spacing={5}>
+          <Grid container spacing={1} alignItems="stretch">
             <Grid item xs={6} md={3}>
               <Box my={3} sx={styles.filters}>
                 <Filter
@@ -78,7 +80,7 @@ export default function Home() {
                   onClick={handleFilterClick}
                 />
               </Box>
-              <Box my={3}>
+              <Box>
                 <Gallery
                   images={getFilteredImages()}
                   key="gallery"
@@ -87,26 +89,27 @@ export default function Home() {
               </Box>
             </Grid>
             <Grid item xs={6} md={9}>
-              <Typography
-                sx={styles.highlight}
-                variant="h1"
-                component="h1"
-                gutterBottom
-                fontWeight={"bold"}
-              >
-                Gift an <span>NFT</span> Card
-              </Typography>
-              <p sx={styles.description}>celebrate in a futuristic way</p>
-              <Box my={3}>
-                <Canvas image={currentImg} />
-              </Box>
-              <Box my={3}>
-                {user === "" ? (
-                  <ConnectWallet />
-                ) : (
-                  <MintNFT currentImg={currentImg} />
-                )}
-              </Box>
+              <Paper elevation={3} sx={styles.canvas}>
+                <Typography
+                  sx={highlight}
+                  variant="h3"
+                  component="h1"
+                  gutterBottom
+                  fontWeight={"bold"}
+                >
+                  Gift an <span>NFT</span> Card
+                </Typography>
+                <Box>
+                  <Canvas image={currentImg} />
+                </Box>
+                <Box my={3}>
+                  {user === "" ? (
+                    <ConnectWallet />
+                  ) : (
+                    <MintNFT currentImg={currentImg} />
+                  )}
+                </Box>
+              </Paper>
             </Grid>
           </Grid>
         </Box>
@@ -131,15 +134,20 @@ const styles = {
     padding: "20px",
     width: "100%",
   },
-  highlight: {
-    backgroundImage: "linear-gradient(135deg, #6e8efb, #a777e3)",
-    color: "transparent",
-    backgroundClip: "text",
-  },
   description: {
     textAlign: "center",
     margin: 0,
     lineHeight: 1.5,
     fontSize: "1.5rem",
+  },
+  canvas: {
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+    margin: "20px",
+    paddingTop: "20px",
+    borderRadius: "20px",
+    height: "calc(100% - 20px)",
   },
 };

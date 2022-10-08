@@ -1,6 +1,5 @@
 import Head from "next/head";
 import NextLink from "next/link";
-import styles from "../../styles/Home.module.css";
 import Typography from "@mui/material/Typography";
 import { gql } from "@apollo/client";
 import client from "../../apollo-client";
@@ -13,12 +12,13 @@ import TimelineItem from "@mui/lab/TimelineItem";
 import TimelineSeparator from "@mui/lab/TimelineSeparator";
 import TimelineConnector from "@mui/lab/TimelineConnector";
 import TimelineContent from "@mui/lab/TimelineContent";
-import Container from "@mui/lab/Container";
+import Container from "@mui/material/Container";
 import TimelineDot from "@mui/lab/TimelineDot";
+import { highlight } from "../../styles/partial";
 
 export default function About(props) {
   const getUserId = (id) => {
-    const charCount = 5;
+    const charCount = 10;
     const start = id.slice(0, charCount);
     const end = id.slice(id.length - charCount);
     return `${start}...${end}`;
@@ -34,10 +34,10 @@ export default function About(props) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className={styles.main}>
-        <Container>
+      <main>
+        <Container sx={styles.container}>
           <Typography
-            className={styles.highlight}
+            sx={highlight}
             variant="h1"
             component="h1"
             gutterBottom
@@ -64,17 +64,13 @@ export default function About(props) {
                   <div>
                     <span>Owner: </span>
                     <NextLink href={`/users/${item.owner}`} passHref>
-                      <a className={styles.highlight}>
-                        {getUserId(item.owner)}
-                      </a>
+                      <a>{getUserId(item.owner)}</a>
                     </NextLink>
                   </div>
                   <div>
                     <span>Creator: </span>
                     <NextLink href={`/users/${item.creator}`} passHref>
-                      <a className={styles.highlight}>
-                        {getUserId(item.creator)}
-                      </a>
+                      <a>{getUserId(item.creator)}</a>
                     </NextLink>
                   </div>
                 </TimelineContent>
@@ -158,3 +154,13 @@ export async function getServerSideProps(props) {
     },
   };
 }
+
+const styles = {
+  container: {
+    padding: "4rem 0",
+    flex: 1,
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+  },
+};

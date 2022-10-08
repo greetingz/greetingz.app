@@ -1,9 +1,9 @@
 import Chip from "@mui/material/Chip";
 
-import { Scrollbar, FreeMode, Navigation } from "swiper";
+import { Scrollbar, FreeMode } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
-import "swiper/css/navigation";
+import "swiper/css/scrollbar";
 
 const Filter = ({ activeFilters, filters, onClick }) => {
   return (
@@ -11,8 +11,10 @@ const Filter = ({ activeFilters, filters, onClick }) => {
       slidesPerView={3}
       spaceBetween={10}
       freeMode={true}
-      navigation={true}
-      modules={[FreeMode, Navigation]}
+      scrollbar={{
+        hide: true,
+      }}
+      modules={[FreeMode, Scrollbar]}
     >
       {filters.map((filter) => (
         <SwiperSlide key={filter}>
