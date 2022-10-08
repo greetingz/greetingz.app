@@ -1,20 +1,31 @@
 import Chip from "@mui/material/Chip";
-import Stack from "@mui/material/Stack";
+
+import { Scrollbar, FreeMode, Navigation } from "swiper";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/navigation";
 
 const Filter = ({ activeFilters, filters, onClick }) => {
   return (
-    <Stack direction="row" spacing={1}>
+    <Swiper
+      slidesPerView={3}
+      spaceBetween={10}
+      freeMode={true}
+      navigation={true}
+      modules={[FreeMode, Navigation]}
+    >
       {filters.map((filter) => (
-        <Chip
-          key={filter}
-          label={filter}
-          variant={activeFilters.includes(filter) ? "" : "outlined"}
-          onClick={() => onClick(filter)}
-          style={{ textTransform: "capitalize" }}
-        />
+        <SwiperSlide key={filter}>
+          <Chip
+            sx={{ width: "100%" }}
+            label={filter}
+            variant={activeFilters.includes(filter) ? "" : "outlined"}
+            onClick={() => onClick(filter)}
+            style={{ textTransform: "capitalize" }}
+          />
+        </SwiperSlide>
       ))}
-    </Stack>
+    </Swiper>
   );
 };
-
 export default Filter;

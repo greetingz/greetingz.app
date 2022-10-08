@@ -160,12 +160,12 @@ const images = [
     tags: ["love"],
   },
   {
-    name: "I love you teal greeting card"
+    name: "I love you teal greeting card",
     cid: "bafkreifdqy4xcv566btejzdkj7qvqayojpes74xmzkeisachs2ymlz2x2a",
     tags: ["love"],
   },
-   {
-    name: "Red and white hearts greeting card"
+  {
+    name: "Red and white hearts greeting card",
     cid: "bafkreiawnexcucqkchlnirqziw25il7texphj2ndkwxsmjynuwq36i7gnq",
     tags: ["love"],
   },
@@ -224,28 +224,28 @@ const images = [
     cid: "bafybeicray5ufvpyzqd6vvbiwwutrwpztoprx4gdbxi5gx6wigxdyvnxm4",
     tags: ["Mother's Day"],
   },
-    {
-    name: "Beige Minimal Happy Father’s Day"
+  {
+    name: "Beige Minimal Happy Father’s Day",
     cid: "bafkreihjxvrwmjwdqzhxxhvs2ecjaeb7xurp43zdj5iishsngxyijjnk5y",
     tags: ["Father's Day"],
   },
-   {
-    name: "Blue White Illustration Happy Father Day"
+  {
+    name: "Blue White Illustration Happy Father Day",
     cid: "bafkreic5sjevf44zucz525b4bill7ejdtonpajnk7vh4riqfdg2srkcg2a",
     tags: ["Father's Day"],
   },
-   {
-    name: "Orange Cream Illustration Happy Father Day"
+  {
+    name: "Orange Cream Illustration Happy Father Day",
     cid: "bafkreifz26sxgchgkmwi6q7ocq2qiayovz6zh3r52a2hdzdpg5tzfz6bfy",
     tags: ["Father's Day"],
   },
-   {
-    name: "White Yellow Illustration Astronaut Happy Father"
+  {
+    name: "White Yellow Illustration Astronaut Happy Father",
     cid: "bafkreictzehnbs7hmnmhe5ky3hkqktfpxdf4njbgy6ils4wz2zt7si5tzy",
     tags: ["Father's Day"],
   },
-   {
-    name: "Simple Minimalist Fathers Day"
+  {
+    name: "Simple Minimalist Fathers Day",
     cid: "bafkreigajm6gjvqsoa6ls25tpjujst7yzbbztq3un7cw223hvuvydrqkk4",
     tags: ["Father's Day"],
   },

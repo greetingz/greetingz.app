@@ -13,6 +13,7 @@ import TimelineItem from "@mui/lab/TimelineItem";
 import TimelineSeparator from "@mui/lab/TimelineSeparator";
 import TimelineConnector from "@mui/lab/TimelineConnector";
 import TimelineContent from "@mui/lab/TimelineContent";
+import Container from "@mui/lab/Container";
 import TimelineDot from "@mui/lab/TimelineDot";
 
 export default function About(props) {
@@ -34,49 +35,53 @@ export default function About(props) {
       </Head>
 
       <main className={styles.main}>
-        <Typography
-          className={styles.highlight}
-          variant="h1"
-          component="h1"
-          gutterBottom
-          fontWeight={"bold"}
-        >
-          Timeline
-        </Typography>
+        <Container>
+          <Typography
+            className={styles.highlight}
+            variant="h1"
+            component="h1"
+            gutterBottom
+            fontWeight={"bold"}
+          >
+            Timeline
+          </Typography>
 
-        <Timeline position="right">
-          {props.images.map((item, index) => (
-            <TimelineItem key={index}>
-              <TimelineSeparator>
-                <TimelineDot />
-                <TimelineConnector />
-              </TimelineSeparator>
-              <TimelineContent>
-                <img
-                  src={item.image}
-                  alt={item.name}
-                  loading="lazy"
-                  width={400}
-                />
+          <Timeline position="right">
+            {props.images.map((item, index) => (
+              <TimelineItem key={index}>
+                <TimelineSeparator>
+                  <TimelineDot />
+                  <TimelineConnector />
+                </TimelineSeparator>
+                <TimelineContent>
+                  <img
+                    src={item.image}
+                    alt={item.name}
+                    loading="lazy"
+                    width={400}
+                  />
 
-                <div>
-                  <span>Owner: </span>
-                  <NextLink href={`/users/${item.owner}`} passHref>
-                    <a className={styles.highlight}>{getUserId(item.owner)}</a>
-                  </NextLink>
-                </div>
-                <div>
-                  <span>Creator: </span>
-                  <NextLink href={`/users/${item.creator}`} passHref>
-                    <a className={styles.highlight}>
-                      {getUserId(item.creator)}
-                    </a>
-                  </NextLink>
-                </div>
-              </TimelineContent>
-            </TimelineItem>
-          ))}
-        </Timeline>
+                  <div>
+                    <span>Owner: </span>
+                    <NextLink href={`/users/${item.owner}`} passHref>
+                      <a className={styles.highlight}>
+                        {getUserId(item.owner)}
+                      </a>
+                    </NextLink>
+                  </div>
+                  <div>
+                    <span>Creator: </span>
+                    <NextLink href={`/users/${item.creator}`} passHref>
+                      <a className={styles.highlight}>
+                        {getUserId(item.creator)}
+                      </a>
+                    </NextLink>
+                  </div>
+                </TimelineContent>
+              </TimelineItem>
+            ))}
+          </Timeline>
+        </Container>
       </main>
 
       <Footer />

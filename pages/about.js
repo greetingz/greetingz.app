@@ -12,6 +12,7 @@ import Box from "@mui/material/Box";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import TwitterIcon from "@mui/icons-material/Twitter";
+import Container from "@mui/material/Container";
 
 import Footer from "../components/Footer";
 
@@ -28,149 +29,151 @@ export default function About() {
       </Head>
 
       <main className={styles.main}>
-        <Typography
-          className={styles.highlight}
-          variant="h1"
-          component="h1"
-          gutterBottom
-          fontWeight={"bold"}
-        >
-          Behind The Project
-        </Typography>
+        <Container>
+          <Typography
+            className={styles.highlight}
+            variant="h1"
+            component="h1"
+            gutterBottom
+            fontWeight={"bold"}
+          >
+            Behind The Project
+          </Typography>
 
-        <Grid container spacing={3} justifyContent="center" alignItems="center">
-          <Grid item  container xs={12} sm={6} md={4} justifyContent="center">
-            <Card sx={{ maxWidth: 345 }}>
-              <Box className={styles.avatarWrapper}>
-                <CardMedia
-                  component="img"
-                  height="300"
-                  image="/images/avatars/m.behairy.jpg"
-                  alt="Mohamed Behairy"
-                />
-              </Box>
-              <CardContent>
-                <Typography gutterBottom variant="h5" component="div">
-                  Mohamed Behairy
-                </Typography>
-                <Typography variant="body2" color="text.secondary"></Typography>
-              </CardContent>
-              <CardActions>
-                <IconButton
-                  color="primary"
-                  href="https://github.com/MoShaaban"
-                  target="_blank"
-                >
-                  <GitHubIcon />
-                </IconButton>
-                <IconButton
-                  color="primary"
-                  href="https://www.linkedin.com/in/mohammadshaaban/"
-                  target="_blank"
-                >
-                  <LinkedInIcon />
-                </IconButton>
-                <IconButton
-                  color="primary"
-                  href="https://twitter.com/Behairy313"
-                  target="_blank"
-                >
-                  <TwitterIcon />
-                </IconButton>
-              </CardActions>
-            </Card>
-          </Grid>
+          <Grid
+            container
+            spacing={3}
+            justifyContent="center"
+            alignItems="center"
+          >
+            <Grid item container xs={12} sm={6} md={4} justifyContent="center">
+              <Card sx={{ maxWidth: 345 }}>
+                <Box className={styles.avatarWrapper}>
+                  <CardMedia
+                    component="img"
+                    height="300"
+                    image="/images/avatars/m.behairy.jpg"
+                    alt="Mohamed Behairy"
+                  />
+                </Box>
+                <CardContent>
+                  <Typography gutterBottom variant="h5" component="div">
+                    Mohamed Behairy
+                  </Typography>
+                  <Typography
+                    variant="body2"
+                    color="text.secondary"
+                  ></Typography>
+                </CardContent>
+                <CardActions>
+                  <IconButton
+                    color="primary"
+                    href="https://github.com/MoShaaban"
+                    target="_blank"
+                  >
+                    <GitHubIcon />
+                  </IconButton>
+                  <IconButton
+                    color="primary"
+                    href="https://www.linkedin.com/in/mohammadshaaban/"
+                    target="_blank"
+                  >
+                    <LinkedInIcon />
+                  </IconButton>
+                  <IconButton
+                    color="primary"
+                    href="https://twitter.com/Behairy313"
+                    target="_blank"
+                  >
+                    <TwitterIcon />
+                  </IconButton>
+                </CardActions>
+              </Card>
+            </Grid>
 
-          <Grid item  container xs={12} sm={6} md={4} justifyContent="center">
-            <Card sx={{ maxWidth: 345 }}>
-              <Box className={styles.avatarWrapper}>
-                <CardMedia
-                  component="img"
-                  height="300"
-                  image="/images/avatars/a.ismail.png"
-                  alt="Abdelrahman Ismail"
-                />
-              </Box>
-              <CardContent>
-                <Typography
-                  gutterBottom
-                  variant="h5"
-                  component="div"
-                >
-                  Abdelrahman Ismail
-                </Typography>
-              </CardContent>
-              <CardActions align="center">
-                <IconButton
-                  color="primary"
-                  href="https://github.com/ismail9k"
-                  target="_blank"
-                >
-                  <GitHubIcon />
-                </IconButton>
-                <IconButton
-                  color="primary"
-                  href="https://www.linkedin.com/in/ismail9k/"
-                  target="_blank"
-                >
-                  <LinkedInIcon />
-                </IconButton>
-                <IconButton
-                  color="primary"
-                  href="https://twitter.com/ismail_9k"
-                  target="_blank"
-                >
-                  <TwitterIcon />
-                </IconButton>
-              </CardActions>
-            </Card>
-          </Grid>
+            <Grid item container xs={12} sm={6} md={4} justifyContent="center">
+              <Card sx={{ maxWidth: 345 }}>
+                <Box className={styles.avatarWrapper}>
+                  <CardMedia
+                    component="img"
+                    height="300"
+                    image="/images/avatars/a.ismail.png"
+                    alt="Abdelrahman Ismail"
+                  />
+                </Box>
+                <CardContent>
+                  <Typography gutterBottom variant="h5" component="div">
+                    Abdelrahman Ismail
+                  </Typography>
+                </CardContent>
+                <CardActions align="center">
+                  <IconButton
+                    color="primary"
+                    href="https://github.com/ismail9k"
+                    target="_blank"
+                  >
+                    <GitHubIcon />
+                  </IconButton>
+                  <IconButton
+                    color="primary"
+                    href="https://www.linkedin.com/in/ismail9k/"
+                    target="_blank"
+                  >
+                    <LinkedInIcon />
+                  </IconButton>
+                  <IconButton
+                    color="primary"
+                    href="https://twitter.com/ismail_9k"
+                    target="_blank"
+                  >
+                    <TwitterIcon />
+                  </IconButton>
+                </CardActions>
+              </Card>
+            </Grid>
 
-          <Grid item  container xs={12} sm={6} md={4} justifyContent="center">
-            <Card sx={{ maxWidth: 345 }}>
-              <Box className={styles.avatarWrapper}>
-                <CardMedia
-                  component="img"
-                  height="300"
-                  image="/images/avatars/e.herawy.jpg"
-                  alt="Abdelrahman Ismail"
-                />
-              </Box>
-              <CardContent>
-                <Typography
-                  gutterBottom
-                  variant="h5"
-                  component="div"
-                >
-                  Eman Herawy
-                </Typography>
-              </CardContent>
-              <CardActions align="center">
-                <IconButton
-                  color="primary"
-                  href="https://github.com/EmanHerawy"
-                  target="_blank"
-                >
-                  <GitHubIcon />
-                </IconButton>
-                <IconButton
-                  color="primary"
-                  href="https://www.linkedin.com/in/emanherawy/"
-                  target="_blank"
-                >
-                  <LinkedInIcon />
-                </IconButton>
-                <IconButton
-                  color="primary"
-                  href="https://twitter.com/Eman_Herawy"
-                  target="_blank"
-                >
-                  <TwitterIcon />
-                </IconButton>
-              </CardActions>
-            </Card>
+            <Grid item container xs={12} sm={6} md={4} justifyContent="center">
+              <Card sx={{ maxWidth: 345 }}>
+                <Box className={styles.avatarWrapper}>
+                  <CardMedia
+                    component="img"
+                    height="300"
+                    image="/images/avatars/e.herawy.jpg"
+                    alt="Abdelrahman Ismail"
+                  />
+                </Box>
+                <CardContent>
+                  <Typography gutterBottom variant="h5" component="div">
+                    Eman Herawy
+                  </Typography>
+                </CardContent>
+                <CardActions align="center">
+                  <IconButton
+                    color="primary"
+                    href="https://github.com/EmanHerawy"
+                    target="_blank"
+                  >
+                    <GitHubIcon />
+                  </IconButton>
+                  <IconButton
+                    color="primary"
+                    href="https://www.linkedin.com/in/emanherawy/"
+                    target="_blank"
+                  >
+                    <LinkedInIcon />
+                  </IconButton>
+                  <IconButton
+                    color="primary"
+                    href="https://twitter.com/Eman_Herawy"
+                    target="_blank"
+                  >
+                    <TwitterIcon />
+                  </IconButton>
+                </CardActions>
+              </Card>
+            </Grid>
           </Grid>
-        </Grid>
+        </Container>
       </main>
 
       <Footer />

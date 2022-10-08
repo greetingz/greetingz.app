@@ -1,17 +1,3 @@
-.main {
-  padding: 4rem 0;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.highlight {
-  background-image: linear-gradient(135deg, #6e8efb, #a777e3);
-  color: transparent;
-  background-clip: text;
-}
-
 .footer {
   display: flex;
   flex: 1;
@@ -28,19 +14,12 @@
   flex-grow: 1;
 }
 
-.description {
-  text-align: center;
-  margin: 0;
-  line-height: 1.5;
-  font-size: 1.5rem;
-}
-
 .avatarWrapper {
   position: relative;
 }
 
 .avatarWrapper::after {
-  content: '';
+  content: "";
   display: block;
   width: 100%;
   height: 100%;
@@ -48,7 +27,7 @@
   top: 0;
   right: 0;
   left: 0;
-  background-image:  linear-gradient(135deg, #6e8efb, #a777e3);
+  background-image: linear-gradient(135deg, #6e8efb, #a777e3);
   opacity: 0.95;
   mix-blend-mode: hard-light;
 }

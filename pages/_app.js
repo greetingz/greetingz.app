@@ -25,9 +25,7 @@ function MyApp(props) {
           value={{ user, setUser, connectWallet: web3ModalConnect }}
         >
           <AppNavbar />
-          <Container>
-            <Component {...pageProps} />
-          </Container>
+          <Component {...pageProps} />
         </UserContext.Provider>
       </ThemeProvider>
     </CacheProvider>

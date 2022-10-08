@@ -1,7 +1,6 @@
 import { useState, useEffect, useContext } from "react";
 
 import Head from "next/head";
-import styles from "../styles/Home.module.css";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 
@@ -13,6 +12,7 @@ import MintNFT from "../components/MintNFT";
 import Footer from "../components/Footer";
 import images from "../assets/images";
 import UserContext from "../store/UserContext";
+import { Grid } from "@mui/material";
 
 const FILTERS = (() => {
   const output = images.reduce((outputSet, current) => {
@@ -67,48 +67,79 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className={styles.main}>
-        <Typography
-          className={styles.highlight}
-          variant="h1"
-          component="h1"
-          gutterBottom
-          fontWeight={"bold"}
-        >
-          Gift an <span>NFT</span> Card
-        </Typography>
-
-        <p className={styles.description}>Celebrate in a futuristic way</p>
-
-        <Box my={3}>
-          <Canvas image={currentImg} />
-        </Box>
-
-        <Box my={3} width="100%">
-          <Gallery
-            images={getFilteredImages()}
-            key="gallery"
-            onClick={handleImgClick}
-          />
-        </Box>
-
-        <Box my={3}>
-          <Filter
-            filters={FILTERS}
-            activeFilters={activeFilters}
-            onClick={handleFilterClick}
-          />
-        </Box>
-
-        <Box my={3}>
-          {user === "" ? (
-            <ConnectWallet />
-          ) : (
-            <MintNFT currentImg={currentImg} />
-          )}
+      <main style={styles.main}>
+        <Box sx={styles.wrapper}>
+          <Grid container spacing={5}>
+            <Grid item xs={6} md={3}>
+              <Box my={3} sx={styles.filters}>
+                <Filter
+                  filters={FILTERS}
+                  activeFilters={activeFilters}
+                  onClick={handleFilterClick}
+                />
+              </Box>
+              <Box my={3}>
+                <Gallery
+                  images={getFilteredImages()}
+                  key="gallery"
+                  onClick={handleImgClick}
+                />
+              </Box>
+            </Grid>
+            <Grid item xs={6} md={9}>
+              <Typography
+                sx={styles.highlight}
+                variant="h1"
+                component="h1"
+                gutterBottom
+                fontWeight={"bold"}
+              >
+                Gift an <span>NFT</span> Card
+              </Typography>
+              <p sx={styles.description}>celebrate in a futuristic way</p>
+              <Box my={3}>
+                <Canvas image={currentImg} />
+              </Box>
+              <Box my={3}>
+                {user === "" ? (
+                  <ConnectWallet />
+                ) : (
+                  <MintNFT currentImg={currentImg} />
+                )}
+              </Box>
+            </Grid>
+          </Grid>
         </Box>
       </main>
       <Footer />
     </>
   );
 }
+
+const styles = {
+  filters: {
+    maxWidth: "100%",
+    overflowX: "auto",
+    scrollSnapType: "x mandatory",
+    scrollBehavior: "smooth",
+    "-webkitOverflowScrolling": "touch",
+  },
+  wrapper: {
+    padding: "20px",
+  },
+  main: {
+    padding: "20px",
+    width: "100%",
+  },
+  highlight: {
+    backgroundImage: "linear-gradient(135deg, #6e8efb, #a777e3)",
+    color: "transparent",
+    backgroundClip: "text",
+  },
+  description: {
+    textAlign: "center",
+    margin: 0,
+    lineHeight: 1.5,
+    fontSize: "1.5rem",
+  },
+};
