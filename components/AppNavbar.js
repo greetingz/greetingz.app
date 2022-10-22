@@ -13,7 +13,7 @@ import MenuItem from "@mui/material/MenuItem";
 
 import UserContext from "../store/UserContext";
 import Beta from "../components/Beta";
-import ConnectWallet from "../components/ConnectWallet";
+import Login from "../components/Login";
 
 const pages = [
   { title: "Home", link: "/" },
@@ -115,7 +115,7 @@ const ResponsiveAppBar = () => {
               </Button>
             </NextLink>
           ) : (
-            <ConnectWallet />
+            <Login />
           )}
         </Toolbar>
       </Container>
