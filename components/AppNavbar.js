@@ -108,6 +108,14 @@ const ResponsiveAppBar = () => {
             ))}
           </Box>
 
+          <Button
+            href="https://forms.gle/2YnXKjTQK55Y8d229"
+            size="large"
+            target="_blank"
+            sx={{ mx: 2 }}
+          >
+            Feedback
+          </Button>
           {user ? (
             <NextLink href={`/users/${user}`} passHref>
               <Button variant="contained" size="large">
