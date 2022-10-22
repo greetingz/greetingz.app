@@ -48,7 +48,7 @@ export default function About() {
           >
             <Grid item container xs={12} sm={6} md={4} justifyContent="center">
               <Card sx={{ maxWidth: 345 }}>
-                <Box className={styles.avatarWrapper}>
+                <Box sx={styles.avatarWrapper}>
                   <CardMedia
                     component="img"
                     height="300"
@@ -93,7 +93,7 @@ export default function About() {
 
             <Grid item container xs={12} sm={6} md={4} justifyContent="center">
               <Card sx={{ maxWidth: 345 }}>
-                <Box className={styles.avatarWrapper}>
+                <Box sx={styles.avatarWrapper}>
                   <CardMedia
                     component="img"
                     height="300"
@@ -134,7 +134,7 @@ export default function About() {
 
             <Grid item container xs={12} sm={6} md={4} justifyContent="center">
               <Card sx={{ maxWidth: 345 }}>
-                <Box className={styles.avatarWrapper}>
+                <Box sx={styles.avatarWrapper}>
                   <CardMedia
                     component="img"
                     height="300"
@@ -188,5 +188,21 @@ const styles = {
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
+  },
+  avatarWrapper: {
+    position: "relative",
+    "&:after": {
+      content: `" "`,
+      display: "block",
+      width: "100%",
+      height: "100%",
+      position: "absolute",
+      top: 0,
+      right: 0,
+      left: 0,
+      backgroundImage: "linear-gradient(135deg, #6e8efb, #a777e3)",
+      opacity: 0.95,
+      mixBlendMode: "hard-light",
+    },
   },
 };
