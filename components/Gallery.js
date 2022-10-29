@@ -19,7 +19,7 @@ const Gallery = ({ images, onClick }) => {
     <Box sx={styles.gallery}>
       <Grid container spacing={3} justifyContent="center" alignItems="stretch">
         {images.map((img) => (
-          <Grid item key={img.cid} xs={6}>
+          <Grid item key={img.cid} xs={3} md={6}>
             <img
               style={styles.image}
               src={img.url}

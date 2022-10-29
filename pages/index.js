@@ -15,6 +15,7 @@ import images from "../assets/images";
 import UserContext from "../store/UserContext";
 import { Grid } from "@mui/material";
 import { highlight } from "../styles/partial";
+import { breakpoints } from "../styles/variables";
 
 const FILTERS = (() => {
   const output = images.reduce((outputSet, current) => {
@@ -72,7 +73,7 @@ export default function Home() {
       <main style={styles.main}>
         <Box sx={styles.wrapper}>
           <Grid container spacing={1} alignItems="stretch">
-            <Grid item xs={6} md={3}>
+            <Grid item sx={styles.sidebar} xs={12} md={3}>
               <Box my={3} sx={styles.filters}>
                 <Filter
                   filters={FILTERS}
@@ -88,7 +89,7 @@ export default function Home() {
                 />
               </Box>
             </Grid>
-            <Grid item xs={6} md={9}>
+            <Grid item xs={12} md={9}>
               <Paper elevation={3} sx={styles.canvas}>
                 <Typography
                   sx={highlight}
@@ -126,6 +127,12 @@ const styles = {
     scrollSnapType: "x mandatory",
     scrollBehavior: "smooth",
     "-webkitOverflowScrolling": "touch",
+  },
+  sidebar: {
+    height: "auto",
+    [`@media (max-width: ${breakpoints.xs}px)`]: {
+      height: "20px",
+    },
   },
   wrapper: {
     padding: "20px",
