@@ -102,13 +102,7 @@ export default function Home() {
                 <Box>
                   <Canvas image={currentImg} />
                 </Box>
-                <Box my={3}>
-                  {user === "" ? (
-                    <ConnectWallet />
-                  ) : (
-                    <MintNFT currentImg={currentImg} />
-                  )}
-                </Box>
+                <Box my={3}></Box>
               </Paper>
             </Grid>
           </Grid>
