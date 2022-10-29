@@ -108,15 +108,7 @@ const ResponsiveAppBar = () => {
             ))}
           </Box>
 
-          {user ? (
-            <NextLink href={`/users/${user}`} passHref>
-              <Button variant="contained" size="large">
-                Timeline
-              </Button>
-            </NextLink>
-          ) : (
-            <Login />
-          )}
+          <Login user={user} />
         </Toolbar>
       </Container>
     </AppBar>

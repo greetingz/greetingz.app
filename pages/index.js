@@ -102,6 +102,7 @@ export default function Home() {
                 <Box>
                   <Canvas image={currentImg} />
                 </Box>
+                <MintNFT currentImg={currentImg} />
                 <Box my={3}></Box>
               </Paper>
             </Grid>

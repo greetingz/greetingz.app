@@ -1,9 +1,11 @@
-import { useContext, useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import UserContext from "../store/UserContext";
 import Button from "@mui/material/Button";
-import Modal from "@mui/material/Modal";
-import Box from "@mui/material/Box";
-import TextField from "@mui/material/TextField";
+import MenuItem from "@mui/material/MenuItem";
+import Menu from "@mui/material/Menu";
+import { ConnectExtension } from "@magic-ext/connect";
+import { ethers } from "ethers";
+import NextLink from "next/link";
 
 import { Magic } from "magic-sdk";
 
@@ -21,56 +23,94 @@ const style = {
 
 let magic;
 
-function ConnectWallet() {
-  const [open, setOpen] = useState(false);
-  const [email, setEmail] = useState("");
-  const { setUser, connectWallet } = useContext(UserContext);
-  useEffect(() => {
-    magic = new Magic(process.env.NEXT_PUBLIC_MAGIC_API_KEY);
+function ConnectWallet({ user }) {
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+  const { setUser } = useContext(UserContext);
+
+  React.useEffect(() => {
+    const customNodeOptions = {
+      rpcUrl: "https://polygon-rpc.com/",
+      chainId: 137,
+    };
+
+    magic = new Magic(process.env.NEXT_PUBLIC_MAGIC_API_KEY, {
+      extensions: [new ConnectExtension()],
+      network: customNodeOptions,
+    });
   }, []);
 
+  const handleProfile = async () => {
+    try {
+      handleClose();
+      await magic.connect.showWallet();
+    } catch (e) {
+      console.error(e);
+    }
+  };
+  const handleLogout = async () => {
+    try {
+      handleClose();
+      magic.connect.disconnect();
+      setUser(null);
+    } catch (e) {
+      console.error(e);
+    }
+  };
   const handleLogin = async () => {
     try {
-      const token = await magic.auth.loginWithMagicLink({
-        email,
-        showUI: true,
-        redirectURI: window.location.href,
-      });
-      console.log("token", token);
+      const provider = new ethers.providers.Web3Provider(magic.rpcProvider);
+      const signer = provider.getSigner();
+      window.signer = signer;
+      const account = await signer.getAddress();
+      setUser(account);
     } catch (e) {
-      console.log(e);
+      console.error(e);
     }
   };
 
-  function handleSetEmail(e) {
-    const value = e.target.value;
-    setEmail(value);
-  }
   return (
     <>
-      <Button onClick={() => setOpen(true)} variant="contained" size="large">
-        Log In
-      </Button>
-
-      <Modal
-        open={open}
-        onClose={() => setOpen(false)}
-        aria-labelledby="parent-modal-title"
-        aria-describedby="parent-modal-description"
-      >
-        <Box sx={style}>
-          <TextField
-            id="email"
-            label="Email"
-            variant="outlined"
-            value={email}
-            onInput={handleSetEmail}
-          />
-          <Button onClick={handleLogin} variant="contained" size="large">
-            Log In
+      {user ? (
+        <>
+          <Button
+            id="basic-button"
+            aria-controls={open ? "basic-menu" : undefined}
+            aria-haspopup="true"
+            aria-expanded={open ? "true" : undefined}
+            variant="contained"
+            size="large"
+            onClick={handleClick}
+          >
+            User
           </Button>
-        </Box>
-      </Modal>
+          <Menu
+            id="basic-menu"
+            anchorEl={anchorEl}
+            open={open}
+            onClose={handleClose}
+            MenuListProps={{
+              "aria-labelledby": "basic-button",
+            }}
+          >
+            <MenuItem onClick={handleProfile}>My account</MenuItem>
+            <NextLink href={`/users/${user}`} passHref>
+              <MenuItem onClick={handleClose}>Timeline</MenuItem>
+            </NextLink>
+            <MenuItem onClick={handleLogout}>Logout</MenuItem>
+          </Menu>
+        </>
+      ) : (
+        <Button onClick={handleLogin} variant="contained" size="large">
+          Log In
+        </Button>
+      )}
     </>
   );
 }
